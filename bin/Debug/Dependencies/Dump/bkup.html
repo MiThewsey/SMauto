@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Twitter Slideshow</title>
+<link rel="stylesheet" type="text/css" href="cssstyles.css" />
+</head>
+<body>
+
+<div id="container">
+	<ul>
+		
+		<li></li>
+		
+		<li>
+			<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Normal service ( ringing standard) resumes! <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://twitter.com/National12bell?ref_src=twsrc%5Etfw">@National12bell</a> <a href="https://twitter.com/SouthwMinster?ref_src=twsrc%5Etfw">@SouthwMinster</a> <a href="https://t.co/rEs2e9ZZxV">pic.twitter.com/rEs2e9ZZxV</a></p>&mdash; Southwell Minster Bells (@southwellbells) <a href="https://twitter.com/southwellbells/status/977842999450357760?ref_src=twsrc%5Etfw">March 25, 2018</a></blockquote>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</li>
+			
+			
+		<li>
+			<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The anticipation is palpable, the results of the <a href="https://twitter.com/National12bell?ref_src=twsrc%5Etfw">@National12bell</a> must be imminent! <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://t.co/N7eBPJEIHC">pic.twitter.com/N7eBPJEIHC</a></p>&mdash; RJL (@StedmanSlowSix) <a href="https://twitter.com/StedmanSlowSix/status/878659701646426112?ref_src=twsrc%5Etfw">June 24, 2017</a></blockquote>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</li>
+		
+      	<li>
+			<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Thanks to these amazing guys for their hard work behind the scenes for today&#39;s <a href="https://twitter.com/National12bell?ref_src=twsrc%5Etfw">@National12bell</a> broadcast from London. <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://t.co/6IXjUVCRmR">pic.twitter.com/6IXjUVCRmR</a></p>&mdash; Matthew Tosh (@MatthewTosh) <a href="https://twitter.com/MatthewTosh/status/878670218876391424?ref_src=twsrc%5Etfw">June 24, 2017</a></blockquote>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</li>
+		
+        <li>
+			<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Congratulations to the Birmingham team in the <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> final today.  Tremendous achievement</p>&mdash; St Martins Guild (@SMGuild1755) <a href="https://twitter.com/SMGuild1755/status/878676883130462208?ref_src=twsrc%5Etfw">June 24, 2017</a></blockquote>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>	
+		</li>
+		
+        <li>
+			<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Enjoying the sunshine and a cheeky pint with <a href="https://twitter.com/sussexbells?ref_src=twsrc%5Etfw">@sussexbells</a> at the <a href="https://twitter.com/National12bell?ref_src=twsrc%5Etfw">@National12bell</a> final. <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://t.co/ZEfTWBSVoG">pic.twitter.com/ZEfTWBSVoG</a></p>&mdash; RJL (@StedmanSlowSix) <a href="https://twitter.com/StedmanSlowSix/status/878613996126994433?ref_src=twsrc%5Etfw">June 24, 2017</a></blockquote>
+			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</li>
+		
+		
+		
+      </ul>
+</div>
+
+<script src="jquery-1.4.2.min.js"></script>
+
+<script>
+$(window).load(function(){
+	
+		var pages = $('#container li'), current=0;
+		var currentPage,nextPage;
+		var timeoutID;
+		var time = 4000;
+
+		var handler=function(){
+
+				currentPage= pages.eq(current);
+				if (current >= pages.length-1)
+					current=1;
+				else
+					current=current+1;
+					nextPage = pages.eq(current);	
+					currentPage.fadeTo('slow',0.0,function(){
+						nextPage.fadeIn('slow',function(){
+							nextPage.css("opacity",1);
+							currentPage.hide();
+							currentPage.css("opacity",1);
+								
+						});	
+					});
+					timeoutID=setTimeout(function(){
+						handler();	
+					}, time);
+			}			
+		
+		
+		handler();	
+
+		
+});
+
+</script>
+
+</body>
+</html>

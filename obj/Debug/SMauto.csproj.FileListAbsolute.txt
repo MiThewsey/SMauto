@@ -1,0 +1,10 @@
+C:\Users\mithe\source\repos\SMauto\bin\Debug\SMauto.exe.config
+C:\Users\mithe\source\repos\SMauto\bin\Debug\SMauto.exe
+C:\Users\mithe\source\repos\SMauto\bin\Debug\SMauto.pdb
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.csprojAssemblyReference.cache
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.Form1.resources
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.Properties.Resources.resources
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.csproj.GenerateResource.cache
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.csproj.CoreCompileInputs.cache
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.exe
+C:\Users\mithe\source\repos\SMauto\obj\Debug\SMauto.pdb

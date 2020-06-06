@@ -1,0 +1,31 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+#container{
+	width:604px;
+	height:453px;
+	position:relative;
+}
+
+
+#container ul{
+	width:604px;
+	height:453px;
+	list-style:none outside none;
+	position:relative;
+ 
+}
+
+#container li:first-child{
+	display:list-item;
+	position:absolute;
+}
+
+#container li{
+	position:absolute;
+	display:none;
+}
+
+

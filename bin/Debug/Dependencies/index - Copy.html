@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Twitter Slideshow</title>
+<link rel="stylesheet" type="text/css" href="cssstyles.css" />
+</head>
+<body>
+
+<div id="container">
+	<ul>
+		<li>
+			
+		</li>
+		
+		<li><blockquote class="twitter-tweet" data-theme="light"><p lang="en" dir="ltr">It&#39;s been quiet around here, so we thought we&#39;d make some noise.<br><br>Something is brewing.<a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://twitter.com/hashtag/bellringing?src=hash&amp;ref_src=twsrc%5Etfw">#bellringing</a> <a href="https://twitter.com/hashtag/bells?src=hash&amp;ref_src=twsrc%5Etfw">#bells</a> <a href="https://twitter.com/hashtag/bellringers?src=hash&amp;ref_src=twsrc%5Etfw">#bellringers</a> <a href="https://t.co/7Q1kfzMxDK">pic.twitter.com/7Q1kfzMxDK</a></p>&mdash; National 12-bell (@National12bell) <a href="https://twitter.com/National12bell/status/1267472870483079168?ref_src=twsrc%5Etfw">June 1, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+
+
+		
+		
+		
+      </ul>
+</div>
+
+<script src="jquery-1.4.2.min.js"></script>
+
+<script>
+$(window).load(function(){
+	
+		var pages = $('#container li'), current=0;
+		var currentPage,nextPage;
+		var timeoutID;
+		var time = 10000;
+
+		var handler=function(){
+
+				currentPage= pages.eq(current);
+				if (current >= pages.length-1)
+					current=1;
+				else
+					current=current+1;
+					nextPage = pages.eq(current);	
+					currentPage.fadeTo('slow',0.0,function(){
+						nextPage.fadeIn('slow',function(){
+							nextPage.css("opacity",1);
+							currentPage.hide();
+							currentPage.css("opacity",1);
+								
+						});	
+					});
+					timeoutID=setTimeout(function(){
+						handler();	
+					}, time);
+			}			
+		
+		
+		handler();	
+
+		
+});
+
+</script>
+
+</body>
+</html>
