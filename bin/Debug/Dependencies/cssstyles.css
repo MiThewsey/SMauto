@@ -28,4 +28,23 @@
 	display:none;
 }
 
+#emailbox {
+	border-radius: 5px;
+	border: 1px solid rgb(218, 218, 218);
+	padding: 20px;
+	width: 458px;
+	height: auto;
+  }
+  table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  }
+  td, th {
+	border: 0px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+
 

@@ -1,0 +1,74 @@
+
+
+<html>
+<head>
+<title>index-copy</title>
+<link rel="stylesheet" type="text/css" href="cssstyles.css" />
+</head>
+<body>
+
+		
+<div id="container">
+	<ul>
+		<li>
+			
+		</li>
+	
+		<li>
+			<p id="emailbox"><table><tr><th style="font-size: 30px;">
+				Matthew Tosh
+				</th><th  style="text-align: right;"><img src="email.png" height="50" width="50"></th></tr><tr><th colspan="2">
+				Email Body- It's been quiet around here, so we thought we'd make some noise.		
+				</th></tr><tr><th colspan="2">
+				<img src="pic.jfif" width="458px">
+				</th></tr></table></p>
+		</li>
+		<li>
+			
+		</li>
+		
+		
+      </ul>
+</div>
+
+<script src="jquery-1.4.2.min.js"></script>
+
+<script>
+$(window).load(function(){
+	
+		var pages = $('#container li'), current=0;
+		var currentPage,nextPage;
+		var timeoutID;
+		var time = 10000;
+
+		var handler=function(){
+
+				currentPage= pages.eq(current);
+				if (current >= pages.length-1)
+					current=1;
+				else
+					current=current+1;
+					nextPage = pages.eq(current);	
+					currentPage.fadeTo('slow',0.0,function(){
+						nextPage.fadeIn('slow',function(){
+							nextPage.css("opacity",1);
+							currentPage.hide();
+							currentPage.css("opacity",1);
+								
+						});	
+					});
+					timeoutID=setTimeout(function(){
+						handler();	
+					}, time);
+			}			
+		
+		
+		handler();	
+
+		
+});
+
+</script>
+
+</body>
+</html>
