@@ -56,6 +56,11 @@
             this.RB_slideshow = new System.Windows.Forms.RadioButton();
             this.GB_SingleOrSlideshow = new System.Windows.Forms.GroupBox();
             this.GB_ActiveArea = new System.Windows.Forms.GroupBox();
+            this.RB_Email5 = new System.Windows.Forms.RadioButton();
+            this.RB_Email4 = new System.Windows.Forms.RadioButton();
+            this.RB_Email3 = new System.Windows.Forms.RadioButton();
+            this.RB_Email2 = new System.Windows.Forms.RadioButton();
+            this.RB_Email1 = new System.Windows.Forms.RadioButton();
             this.CB_Email5 = new System.Windows.Forms.CheckBox();
             this.CB_Email4 = new System.Windows.Forms.CheckBox();
             this.CB_Email3 = new System.Windows.Forms.CheckBox();
@@ -63,7 +68,7 @@
             this.CB_Email1 = new System.Windows.Forms.CheckBox();
             this.TB_EmailBody = new System.Windows.Forms.TextBox();
             this.TB_EmailName = new System.Windows.Forms.TextBox();
-            this.CB_Email = new System.Windows.Forms.ComboBox();
+            this.ComB_Email = new System.Windows.Forms.ComboBox();
             this.B_ClearAll = new System.Windows.Forms.Button();
             this.B_LoadAll = new System.Windows.Forms.Button();
             this.B_SaveAll = new System.Windows.Forms.Button();
@@ -87,11 +92,6 @@
             this.CB_FB3 = new System.Windows.Forms.CheckBox();
             this.L_FB4 = new System.Windows.Forms.Label();
             this.TB_FB4 = new System.Windows.Forms.TextBox();
-            this.RB_Email1 = new System.Windows.Forms.RadioButton();
-            this.RB_Email2 = new System.Windows.Forms.RadioButton();
-            this.RB_Email3 = new System.Windows.Forms.RadioButton();
-            this.RB_Email4 = new System.Windows.Forms.RadioButton();
-            this.RB_Email5 = new System.Windows.Forms.RadioButton();
             this.GB_SingleOrSlideshow.SuspendLayout();
             this.GB_ActiveArea.SuspendLayout();
             this.SuspendLayout();
@@ -359,7 +359,7 @@
             this.GB_ActiveArea.Controls.Add(this.CB_Email1);
             this.GB_ActiveArea.Controls.Add(this.TB_EmailBody);
             this.GB_ActiveArea.Controls.Add(this.TB_EmailName);
-            this.GB_ActiveArea.Controls.Add(this.CB_Email);
+            this.GB_ActiveArea.Controls.Add(this.ComB_Email);
             this.GB_ActiveArea.Controls.Add(this.B_ClearAll);
             this.GB_ActiveArea.Controls.Add(this.B_LoadAll);
             this.GB_ActiveArea.Controls.Add(this.B_SaveAll);
@@ -411,6 +411,56 @@
             this.GB_ActiveArea.Size = new System.Drawing.Size(871, 453);
             this.GB_ActiveArea.TabIndex = 28;
             this.GB_ActiveArea.TabStop = false;
+            // 
+            // RB_Email5
+            // 
+            this.RB_Email5.AutoSize = true;
+            this.RB_Email5.Location = new System.Drawing.Point(715, 61);
+            this.RB_Email5.Name = "RB_Email5";
+            this.RB_Email5.Size = new System.Drawing.Size(14, 13);
+            this.RB_Email5.TabIndex = 63;
+            this.RB_Email5.TabStop = true;
+            this.RB_Email5.UseVisualStyleBackColor = true;
+            // 
+            // RB_Email4
+            // 
+            this.RB_Email4.AutoSize = true;
+            this.RB_Email4.Location = new System.Drawing.Point(694, 61);
+            this.RB_Email4.Name = "RB_Email4";
+            this.RB_Email4.Size = new System.Drawing.Size(14, 13);
+            this.RB_Email4.TabIndex = 62;
+            this.RB_Email4.TabStop = true;
+            this.RB_Email4.UseVisualStyleBackColor = true;
+            // 
+            // RB_Email3
+            // 
+            this.RB_Email3.AutoSize = true;
+            this.RB_Email3.Location = new System.Drawing.Point(671, 61);
+            this.RB_Email3.Name = "RB_Email3";
+            this.RB_Email3.Size = new System.Drawing.Size(14, 13);
+            this.RB_Email3.TabIndex = 61;
+            this.RB_Email3.TabStop = true;
+            this.RB_Email3.UseVisualStyleBackColor = true;
+            // 
+            // RB_Email2
+            // 
+            this.RB_Email2.AutoSize = true;
+            this.RB_Email2.Location = new System.Drawing.Point(651, 61);
+            this.RB_Email2.Name = "RB_Email2";
+            this.RB_Email2.Size = new System.Drawing.Size(14, 13);
+            this.RB_Email2.TabIndex = 60;
+            this.RB_Email2.TabStop = true;
+            this.RB_Email2.UseVisualStyleBackColor = true;
+            // 
+            // RB_Email1
+            // 
+            this.RB_Email1.AutoSize = true;
+            this.RB_Email1.Location = new System.Drawing.Point(630, 60);
+            this.RB_Email1.Name = "RB_Email1";
+            this.RB_Email1.Size = new System.Drawing.Size(14, 13);
+            this.RB_Email1.TabIndex = 59;
+            this.RB_Email1.TabStop = true;
+            this.RB_Email1.UseVisualStyleBackColor = true;
             // 
             // CB_Email5
             // 
@@ -472,19 +522,22 @@
             this.TB_EmailName.Size = new System.Drawing.Size(202, 20);
             this.TB_EmailName.TabIndex = 52;
             // 
-            // CB_Email
+            // ComB_Email
             // 
-            this.CB_Email.FormattingEnabled = true;
-            this.CB_Email.Items.AddRange(new object[] {
+            this.ComB_Email.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComB_Email.FormattingEnabled = true;
+            this.ComB_Email.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5"});
-            this.CB_Email.Location = new System.Drawing.Point(619, 109);
-            this.CB_Email.Name = "CB_Email";
-            this.CB_Email.Size = new System.Drawing.Size(121, 21);
-            this.CB_Email.TabIndex = 51;
+            this.ComB_Email.Location = new System.Drawing.Point(619, 109);
+            this.ComB_Email.Name = "ComB_Email";
+            this.ComB_Email.Size = new System.Drawing.Size(121, 21);
+            this.ComB_Email.TabIndex = 51;
+            this.ComB_Email.SelectedIndexChanged += new System.EventHandler(this.CB_Email_SelectedIndexChanged);
+            this.ComB_Email.Click += new System.EventHandler(this.ComB_Email_Click);
             // 
             // B_ClearAll
             // 
@@ -691,56 +744,6 @@
             this.TB_FB4.Size = new System.Drawing.Size(100, 20);
             this.TB_FB4.TabIndex = 37;
             // 
-            // RB_Email1
-            // 
-            this.RB_Email1.AutoSize = true;
-            this.RB_Email1.Location = new System.Drawing.Point(630, 60);
-            this.RB_Email1.Name = "RB_Email1";
-            this.RB_Email1.Size = new System.Drawing.Size(14, 13);
-            this.RB_Email1.TabIndex = 59;
-            this.RB_Email1.TabStop = true;
-            this.RB_Email1.UseVisualStyleBackColor = true;
-            // 
-            // RB_Email2
-            // 
-            this.RB_Email2.AutoSize = true;
-            this.RB_Email2.Location = new System.Drawing.Point(651, 61);
-            this.RB_Email2.Name = "RB_Email2";
-            this.RB_Email2.Size = new System.Drawing.Size(14, 13);
-            this.RB_Email2.TabIndex = 60;
-            this.RB_Email2.TabStop = true;
-            this.RB_Email2.UseVisualStyleBackColor = true;
-            // 
-            // RB_Email3
-            // 
-            this.RB_Email3.AutoSize = true;
-            this.RB_Email3.Location = new System.Drawing.Point(671, 61);
-            this.RB_Email3.Name = "RB_Email3";
-            this.RB_Email3.Size = new System.Drawing.Size(14, 13);
-            this.RB_Email3.TabIndex = 61;
-            this.RB_Email3.TabStop = true;
-            this.RB_Email3.UseVisualStyleBackColor = true;
-            // 
-            // RB_Email4
-            // 
-            this.RB_Email4.AutoSize = true;
-            this.RB_Email4.Location = new System.Drawing.Point(694, 61);
-            this.RB_Email4.Name = "RB_Email4";
-            this.RB_Email4.Size = new System.Drawing.Size(14, 13);
-            this.RB_Email4.TabIndex = 62;
-            this.RB_Email4.TabStop = true;
-            this.RB_Email4.UseVisualStyleBackColor = true;
-            // 
-            // RB_Email5
-            // 
-            this.RB_Email5.AutoSize = true;
-            this.RB_Email5.Location = new System.Drawing.Point(715, 61);
-            this.RB_Email5.Name = "RB_Email5";
-            this.RB_Email5.Size = new System.Drawing.Size(14, 13);
-            this.RB_Email5.TabIndex = 63;
-            this.RB_Email5.TabStop = true;
-            this.RB_Email5.UseVisualStyleBackColor = true;
-            // 
             // F_SMauto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,7 +816,7 @@
         private System.Windows.Forms.Button B_ClearAll;
         private System.Windows.Forms.Button B_LoadAll;
         private System.Windows.Forms.Button B_SaveAll;
-        private System.Windows.Forms.ComboBox CB_Email;
+        private System.Windows.Forms.ComboBox ComB_Email;
         private System.Windows.Forms.CheckBox CB_Email5;
         private System.Windows.Forms.CheckBox CB_Email4;
         private System.Windows.Forms.CheckBox CB_Email3;

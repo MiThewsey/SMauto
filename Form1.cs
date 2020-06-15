@@ -23,13 +23,15 @@ namespace SMauto
         readonly string FL_cssstyle     = @"Dependencies\\cssstyles.css";
         readonly string FL_jquery       = @"Dependencies\\jquery-1.4.2.min.js";
         readonly string FL_OBS_Twitter  = @"OBS_Twitter.html";
-        readonly string FL_twitterFB_savedata  = @"Dependencies\\twitterFB_savedata.txt";
+        readonly string FL_twitterFB_savedata = @"Dependencies\\twitterFB_savedata.txt";
+        readonly string FL_Email_savedata = @"Dependencies\\Email_savedata.txt";
         #endregion
         #region Loading things
         public F_SMauto()
         {
             InitializeComponent();
             GB_ActiveArea.Enabled = false;
+            ComB_Email.SelectedIndex = 0;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,21 +55,21 @@ namespace SMauto
                 B_FileCheck.BackColor = Color.Red;
                 GB_ActiveArea.Enabled = false;
             }
-
         }
         #endregion
 
-        //html to display emails. (The backslash \ will escape the "" in your HTML code.)
-        List<string> EmailHTML = new List<string>() {
-            "<link rel=\"stylesheet\" type=\"text/css\" href=\"Dependencies/cssstyles.css\" />",
-            "<p id=\"emailbox\"><table><tr><th style=\"font-size: 30px;\">",
-            "Test name",
-            "</th><th  style=\"text-align: right;\"><img src=\"Dependencies/email.png\" height=\"50\" width=\"50\"></th></tr><tr><th colspan=\"2\">",
-            "Test body text",
-            "</th></tr><tr><th colspan=\"2\">",
-            "<img src=\"Dependencies/pic.jfif\" width=\"458px\">",
-            "</th></tr></table></p>"};
+        string EmailHTML;
+        readonly string EmailHTMLOrigional =
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"Dependencies/cssstyles.css\" />"+
+                    "<p id=\"emailbox\"><table><tr><th style=\"font-size: 30px;\">"+
+                    "NAME"+
+                    "</th><th  style=\"text-align: right;\"><img src=\"Dependencies/email.png\" height=\"50\" width=\"50\"></th></tr><tr><th colspan=\"2\">"+
+                    "BODY"+
+                    "</th></tr><tr><th colspan=\"2\">"+
+                    //"<img src=\"Dependencies/pic.jfif\" width=\"458px\">",
+                    "</th></tr></table></p>";
 
+        List<string> EmailSavedata = new List<string>(new string[10]);
 
         #region Clear and update buttons
         private void B_Clear_Click(object sender, EventArgs e)
@@ -77,9 +79,10 @@ namespace SMauto
         }
         private void B_Update_Click(object sender, EventArgs e)
         {
+            
             if (RB_single.Checked)
             {
-                #region tweets and FBs single
+                #region Singles
                 //Single tweets
                 if (RB_tweet1.Checked)
                 {
@@ -111,44 +114,77 @@ namespace SMauto
                 if (RB_FB1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB1.Text);
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB1.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                 }
                 if (RB_FB2.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB2.Text);
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB2.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                 }
                 if (RB_FB3.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB3.Text);
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB3.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                 }
                 if (RB_FB4.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB4.Text);
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB4.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                 }
                 if (RB_FB5.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB5.Text);
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB5.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                 }
-                #endregion
+                //emails
                 if (RB_Email1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    EmailHTML[2] = TB_EmailName.Text;
-                    EmailHTML[4] = TB_EmailBody.Text;
-                    File.WriteAllLines(FL_OBS_Twitter, EmailHTML.ToArray());
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[0]);
+                    EmailHTML.Replace("BODY", EmailSavedata[1]);
+                    File.WriteAllText(FL_OBS_Twitter, EmailHTML);
+                }
+                if (RB_Email2.Checked)
+                {
+                    File.Delete(FL_OBS_Twitter);
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[2]);
+                    EmailHTML.Replace("BODY", EmailSavedata[3]);
+                    File.WriteAllText(FL_OBS_Twitter, EmailHTML);
+                }
+                if (RB_Email3.Checked)
+                {
+                    File.Delete(FL_OBS_Twitter);
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[4]);
+                    EmailHTML.Replace("BODY", EmailSavedata[5]);
+                    File.WriteAllText(FL_OBS_Twitter, EmailHTML);
+                }
+                if (RB_Email4.Checked)
+                {
+                    File.Delete(FL_OBS_Twitter);
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[6]);
+                    EmailHTML.Replace("BODY", EmailSavedata[7]);
+                    File.WriteAllText(FL_OBS_Twitter, EmailHTML);
+                }
+                if (RB_Email5.Checked)
+                {
+                    File.Delete(FL_OBS_Twitter);
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[8]);
+                    EmailHTML.Replace("BODY", EmailSavedata[9]);
+                    File.WriteAllText(FL_OBS_Twitter, EmailHTML);
                 }
 
+                #endregion
             }
             if (RB_slideshow.Checked)
             {
                 File.Delete(FL_OBS_Twitter);
                 File.Copy(FL_origional, FL_OBS_Twitter);
-
-                #region Multi, tweets and FBs
+                #region Multis
                 //reverse order so that first tweet shows first
                 //Tweets
                 if (CB_tweet5.Checked)
@@ -197,13 +233,14 @@ namespace SMauto
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
 
+
                 //FBs
                 if (CB_FB1.Checked)
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB1.Text);
+                    alllines.Insert(16, TB_FB1.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -212,7 +249,7 @@ namespace SMauto
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB2.Text);
+                    alllines.Insert(16, TB_FB2.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -221,7 +258,7 @@ namespace SMauto
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB3.Text);
+                    alllines.Insert(16, TB_FB3.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -230,7 +267,7 @@ namespace SMauto
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB4.Text);
+                    alllines.Insert(16, TB_FB4.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -239,14 +276,82 @@ namespace SMauto
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB5.Text);
+                    alllines.Insert(16, TB_FB5.Text.Replace("width=\"560\"", "width=\"500\"").Replace("height=\"", "height=\"9"));
+                    alllines.Insert(17, "</li>");
+                    File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
+                }
+
+                //Emails
+                if (CB_Email1.Checked)
+                {
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[0]);
+                    EmailHTML.Replace("BODY", EmailSavedata[1]);
+                    var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
+                    alllines.Insert(14, "");
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"",""));
+                    alllines.Insert(17, "</li>");
+                    File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
+                }
+                //Emails
+                if (CB_Email2.Checked)
+                {
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[2]);
+                    EmailHTML.Replace("BODY", EmailSavedata[3]);
+                    var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
+                    alllines.Insert(14, "");
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"", ""));
+                    alllines.Insert(17, "</li>");
+                    File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
+                }
+                //Emails
+                if (CB_Email3.Checked)
+                {
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[4]);
+                    EmailHTML.Replace("BODY", EmailSavedata[5]);
+                    var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
+                    alllines.Insert(14, "");
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"", ""));
+                    alllines.Insert(17, "</li>");
+                    File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
+                }
+                //Emails
+                if (CB_Email4.Checked)
+                {
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[6]);
+                    EmailHTML.Replace("BODY", EmailSavedata[7]);
+                    var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
+                    alllines.Insert(14, "");
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"", ""));
+                    alllines.Insert(17, "</li>");
+                    File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
+                }
+                //Emails
+                if (CB_Email5.Checked)
+                {
+                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML.Replace("NAME", EmailSavedata[8]);
+                    EmailHTML.Replace("BODY", EmailSavedata[9]);
+                    var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
+                    alllines.Insert(14, "");
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"", ""));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
                 #endregion
-
             }
 
+            #region Multiview output
+
+            #endregion
         }
         #endregion
         #region Clear textbox buttons
@@ -312,6 +417,37 @@ namespace SMauto
             TwtFBSaveDataLines.Add(TB_FB4.Text);
             TwtFBSaveDataLines.Add(TB_FB5.Text);
             File.WriteAllLines(FL_twitterFB_savedata, TwtFBSaveDataLines.ToArray());
+
+
+            if (ComB_Email.SelectedIndex == 0)
+            {
+                EmailSavedata[0] = TB_EmailName.Text;
+                EmailSavedata[1] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 1)
+            {
+                EmailSavedata[2] = TB_EmailName.Text;
+                EmailSavedata[3] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 2)
+            {
+                EmailSavedata[4] = TB_EmailName.Text;
+                EmailSavedata[5] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 3)
+            {
+                EmailSavedata[6] = TB_EmailName.Text;
+                EmailSavedata[7] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 4)
+            {
+                EmailSavedata[8] = TB_EmailName.Text;
+                EmailSavedata[9] = TB_EmailBody.Text;
+            }
+
+            File.WriteAllText(FL_Email_savedata, string.Empty);
+            File.WriteAllLines(FL_Email_savedata, EmailSavedata.ToArray());
+
         }
         private void B_LoadAll_Click(object sender, EventArgs e)
         {
@@ -327,6 +463,10 @@ namespace SMauto
             TB_FB4.Text = TwtFBSaveDataLines[8];
             TB_FB5.Text = TwtFBSaveDataLines[9];
 
+            EmailSavedata = File.ReadAllLines(FL_Email_savedata).ToList();
+            ComB_Email.SelectedIndex = 0;
+            TB_EmailName.Text = EmailSavedata[0];
+            TB_EmailBody.Text = EmailSavedata[1];
         }
         private void B_ClearAll_Click(object sender, EventArgs e)
         {
@@ -346,6 +486,8 @@ namespace SMauto
                 TB_FB5.Clear();
                 #endregion
                 File.WriteAllText(FL_twitterFB_savedata, string.Empty);
+                File.WriteAllText(FL_Email_savedata, string.Empty);
+                EmailSavedata.Clear();
             }
         }
 
@@ -353,8 +495,65 @@ namespace SMauto
 
 
 
+
         #endregion
 
+        private void CB_Email_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ComB_Email.SelectedIndex == 0)
+            {
+                TB_EmailName.Text = EmailSavedata[0];
+                TB_EmailBody.Text = EmailSavedata[1];
+            }
+            if (ComB_Email.SelectedIndex == 1)
+            {
+                TB_EmailName.Text = EmailSavedata[2];
+                TB_EmailBody.Text = EmailSavedata[3];
+            }
+            if (ComB_Email.SelectedIndex == 2)
+            {
+                TB_EmailName.Text = EmailSavedata[4];
+                TB_EmailBody.Text = EmailSavedata[5];
+            }
+            if (ComB_Email.SelectedIndex == 3)
+            {
+                TB_EmailName.Text = EmailSavedata[6];
+                TB_EmailBody.Text = EmailSavedata[7];
+            }
+            if (ComB_Email.SelectedIndex == 4)
+            {
+                TB_EmailName.Text = EmailSavedata[8];
+                TB_EmailBody.Text = EmailSavedata[9];
+            }
+        }
 
+        private void ComB_Email_Click(object sender, EventArgs e)
+        {
+            if (ComB_Email.SelectedIndex == 0)
+            {
+                EmailSavedata[0] = TB_EmailName.Text;
+                EmailSavedata[1] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 1)
+            {
+                EmailSavedata[2] = TB_EmailName.Text;
+                EmailSavedata[3] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 2)
+            {
+                EmailSavedata[4] = TB_EmailName.Text;
+                EmailSavedata[5] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 3)
+            {
+                EmailSavedata[6] = TB_EmailName.Text;
+                EmailSavedata[7] = TB_EmailBody.Text;
+            }
+            if (ComB_Email.SelectedIndex == 4)
+            {
+                EmailSavedata[8] = TB_EmailName.Text;
+                EmailSavedata[9] = TB_EmailBody.Text;
+            }
+        }
     }
 }
