@@ -142,27 +142,27 @@ namespace SMauto
                 if (RB_FB1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 if (RB_FB2.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB2.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB2.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 if (RB_FB3.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB3.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB3.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 if (RB_FB4.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB4.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB4.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 if (RB_FB5.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_FB5.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    File.WriteAllText(FL_OBS_Twitter, TB_FB5.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 //emails
                 if (RB_Email1.Checked)
@@ -259,7 +259,7 @@ namespace SMauto
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li id=\"FBcomment\">");
-                    alllines.Insert(16, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
+                    alllines.Insert(16, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -267,36 +267,36 @@ namespace SMauto
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB2.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
-                    alllines.Insert(17, "</li id=\"FBcomment\">");
+                    alllines.Insert(15, "<li id=\"FBcomment\">");
+                    alllines.Insert(16, TB_FB2.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
+                    alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
                 if (CB_FB3.Checked)
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB3.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
-                    alllines.Insert(17, "</li id=\"FBcomment\">");
+                    alllines.Insert(15, "<li id=\"FBcomment\">");
+                    alllines.Insert(16, TB_FB3.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
+                    alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
                 if (CB_FB4.Checked)
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB4.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
-                    alllines.Insert(17, "</li id=\"FBcomment\">");
+                    alllines.Insert(15, "<li id=\"FBcomment\">");
+                    alllines.Insert(16, TB_FB4.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
+                    alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
                 if (CB_FB5.Checked)
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_FB5.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"9"));
-                    alllines.Insert(17, "</li id=\"FBcomment\">");
+                    alllines.Insert(15, "<li id=\"FBcomment\">");
+                    alllines.Insert(16, TB_FB5.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
+                    alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
 
@@ -362,11 +362,11 @@ namespace SMauto
             EmailHTML = EmailHTMLOrigional;
             File.Delete(FL_multiview);
             File.WriteAllText(FL_multiview, MultiviewHTML
-                .Replace("EMAIL1", EmailHTML.Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]))
-                .Replace("EMAIL2", EmailHTML.Replace("NAME", EmailSavedata[2]).Replace("BODY", EmailSavedata[3]))
-                .Replace("EMAIL3", EmailHTML.Replace("NAME", EmailSavedata[4]).Replace("BODY", EmailSavedata[5]))
-                .Replace("EMAIL4", EmailHTML.Replace("NAME", EmailSavedata[6]).Replace("BODY", EmailSavedata[7]))
-                .Replace("EMAIL5", EmailHTML.Replace("NAME", EmailSavedata[8]).Replace("BODY", EmailSavedata[9]))
+                .Replace("EMAIL1", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]))
+                .Replace("EMAIL2", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[2]).Replace("BODY", EmailSavedata[3]))
+                .Replace("EMAIL3", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[4]).Replace("BODY", EmailSavedata[5]))
+                .Replace("EMAIL4", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[6]).Replace("BODY", EmailSavedata[7]))
+                .Replace("EMAIL5", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[8]).Replace("BODY", EmailSavedata[9]))
 
                 .Replace("TWEET1", TB_tweet1.Text)
                 .Replace("TWEET2", TB_tweet2.Text)
