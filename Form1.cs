@@ -25,6 +25,7 @@ namespace SMauto
         readonly string FL_OBS_Twitter  = @"OBS_Twitter.html";
         readonly string FL_twitterFB_savedata = @"Dependencies\\twitterFB_savedata.txt";
         readonly string FL_Email_savedata = @"Dependencies\\Email_savedata.txt";
+        readonly string FL_multiview = @"Multiview.html";
         #endregion
         #region Loading things
         public F_SMauto()
@@ -60,16 +61,43 @@ namespace SMauto
 
         string EmailHTML;
         readonly string EmailHTMLOrigional =
-                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"Dependencies/cssstyles.css\" />"+
-                    "<p id=\"emailbox\"><table><tr><th style=\"font-size: 30px;\">"+
-                    " NAME "+
-                    "</th><th  style=\"text-align: right;\"><img src=\"Dependencies/email.png\" height=\"50\" width=\"50\"></th></tr><tr><th colspan=\"2\">"+
-                    " BODY "+
-                    "</th></tr><tr><th colspan=\"2\">"+
+                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"Dependencies/cssstyles.css\" />" +
+                    "<p id=\"emailbox\"><table><tr><th style=\"font-size: 30px;\">" +
+                    " NAME " +
+                    "</th><th  style=\"text-align: right;\"><img src=\"Dependencies/email.png\" height=\"50\" width=\"50\"></th></tr><tr><th colspan=\"2\">" +
+                    " BODY " +
+                    "</th></tr><tr><th colspan=\"2\">" +
                     //"<img src=\"Dependencies/pic.jfif\" width=\"458px\">",
                     "</th></tr></table></p>";
 
         List<string> EmailSavedata = new List<string>(new string[10]);
+
+        readonly string MultiviewHTML =
+            "<meta http-equiv=\"refresh\" content=\"10\">" + //refresh webpage every 10 seconds
+            "<table>" +
+            "<tr>" +
+            "<th id=\"multiview\">EMAIL1</th>" +
+            "<th id=\"multiview\">EMAIL2</th>" +
+            "<th id=\"multiview\">EMAIL3</th>" +
+            "<th id=\"multiview\">EMAIL4</th>" +
+            "<th id=\"multiview\">EMAIL5</th>" +
+            "</tr>" +
+            "<tr>" +
+            "<th>TWEET1</th>" +
+            "<th>TWEET2</th>" +
+            "<th>TWEET3</th>" +
+            "<th>TWEET4</th>" +
+            "<th>TWEET5</th>" +
+            "</tr>" +
+            "<tr>" +
+            "<th>FB1</th>" +
+            "<th>FB2</th>" +
+            "<th>FB3</th>" +
+            "<th>FB4</th>" +
+            "<th>FB5</th>" +
+            "</tr>" +
+            "</table>";
+
 
         #region Clear and update buttons
         private void B_Clear_Click(object sender, EventArgs e)
@@ -331,6 +359,26 @@ namespace SMauto
             }
             #region Multiview output
 
+            EmailHTML = EmailHTMLOrigional;
+            File.Delete(FL_multiview);
+            File.WriteAllText(FL_multiview, MultiviewHTML
+                .Replace("EMAIL1", EmailHTML.Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]))
+                .Replace("EMAIL2", EmailHTML.Replace("NAME", EmailSavedata[2]).Replace("BODY", EmailSavedata[3]))
+                .Replace("EMAIL3", EmailHTML.Replace("NAME", EmailSavedata[4]).Replace("BODY", EmailSavedata[5]))
+                .Replace("EMAIL4", EmailHTML.Replace("NAME", EmailSavedata[6]).Replace("BODY", EmailSavedata[7]))
+                .Replace("EMAIL5", EmailHTML.Replace("NAME", EmailSavedata[8]).Replace("BODY", EmailSavedata[9]))
+
+                .Replace("TWEET1", TB_tweet1.Text)
+                .Replace("TWEET2", TB_tweet2.Text)
+                .Replace("TWEET3", TB_tweet3.Text)
+                .Replace("TWEET4", TB_tweet4.Text)
+                .Replace("TWEET5", TB_tweet5.Text)
+
+                .Replace("FB1", TB_FB1.Text.Replace("width=\"560\"", ""))
+                .Replace("FB2", TB_FB2.Text.Replace("width=\"560\"", ""))
+                .Replace("FB3", TB_FB3.Text.Replace("width=\"560\"", ""))
+                .Replace("FB4", TB_FB4.Text.Replace("width=\"560\"", ""))
+                .Replace("FB5", TB_FB5.Text.Replace("width=\"560\"", "")));
 
             #endregion
         }
