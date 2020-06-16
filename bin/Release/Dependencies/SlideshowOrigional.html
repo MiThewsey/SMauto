@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Twitter Slideshow</title>
+<link rel="stylesheet" type="text/css" href="Dependencies/cssstyles.css" />
+</head>
+<body>
+
+<div id="container">
+	<ul>
+		<li></li>
+		
+		
+
+		
+		
+		
+      </ul>
+</div>
+
+<script src="Dependencies/jquery-1.4.2.min.js"></script>
+
+<script>
+$(window).load(function(){
+	
+		var pages = $('#container li'), current=0;
+		var currentPage,nextPage;
+		var timeoutID;
+		var time = 4000;
+
+		var handler=function(){
+
+				currentPage= pages.eq(current);
+				if (current >= pages.length-1)
+					current=1;
+				else
+					current=current+1;
+					nextPage = pages.eq(current);	
+					currentPage.fadeTo('slow',0.0,function(){
+						nextPage.fadeIn('slow',function(){
+							nextPage.css("opacity",1);
+							currentPage.hide();
+							currentPage.css("opacity",1);
+								
+						});	
+					});
+					timeoutID=setTimeout(function(){
+						handler();	
+					}, time);
+			}			
+		
+		
+		handler();	
+
+		
+});
+
+</script>
+
+</body>
+</html>

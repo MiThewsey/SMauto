@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Twitter Slideshow</title>
+<link rel="stylesheet" type="text/css" href="Dependencies/cssstyles.css" />
+</head>
+<body>
+
+<div id="container">
+	<ul>
+		<li></li>
+		
+		
+
+<li id="emailboxslideshow">
+<link rel="stylesheet" type="text/css" href="Dependencies/cssstyles.css" /><p ><table><tr><th style="font-size: 30px;"> email3 </th><th  style="text-align: right;"><img src="Dependencies/email.png" height="50" width="50"></th></tr><tr><th colspan="2"> email3 </th></tr><tr><th colspan="2"></th></tr></table></p>
+</li>
+
+<li id="FBcomment">
+<iframe src="https://www.facebook.com/plugins/comment_embed.php?href=https%3A%2F%2Fwww.facebook.com%2FNationalTwelveBellStrikingContest%2Fposts%2F3167151396665027%3Fcomment_id%3D3167691506611016%26__cft__[0]%3DAZXNVC8q61ZP6HlRy2o1646nF76ute253DoUGOEQ7Cyv8owXtp0DEDdcuYglEwtFR45XKPeBhQ1sqUezEcVoSgjwEqxe4w2wmFbiOmRZE92nBpqmyrbueOd-Oel0hwJ8fgiNLkUfXAUdpQUpiHEaSfWPhAuzdnWoIiW9GGoWCWvCSg%26__tn__%3DR]-R&include_parent=false&width=560&height=113&appId" width="550" height="auto113" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+</li>
+
+<li>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">National 12-Bell Results <a href="https://twitter.com/hashtag/12bell?src=hash&amp;ref_src=twsrc%5Etfw">#12bell</a> <a href="https://t.co/YYmxTt6tAZ">https://t.co/YYmxTt6tAZ</a></p>&mdash; St Martins Guild (@SMGuild1755) <a href="https://twitter.com/SMGuild1755/status/747028693697069056?ref_src=twsrc%5Etfw">June 26, 2016</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</li>
+
+		
+		
+		
+      </ul>
+</div>
+
+<script src="Dependencies/jquery-1.4.2.min.js"></script>
+
+<script>
+$(window).load(function(){
+	
+		var pages = $('#container li'), current=0;
+		var currentPage,nextPage;
+		var timeoutID;
+		var time = 4000;
+
+		var handler=function(){
+
+				currentPage= pages.eq(current);
+				if (current >= pages.length-1)
+					current=1;
+				else
+					current=current+1;
+					nextPage = pages.eq(current);	
+					currentPage.fadeTo('slow',0.0,function(){
+						nextPage.fadeIn('slow',function(){
+							nextPage.css("opacity",1);
+							currentPage.hide();
+							currentPage.css("opacity",1);
+								
+						});	
+					});
+					timeoutID=setTimeout(function(){
+						handler();	
+					}, time);
+			}			
+		
+		
+		handler();	
+
+		
+});
+
+</script>
+
+</body>
+</html>

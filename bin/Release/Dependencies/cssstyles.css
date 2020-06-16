@@ -1,0 +1,108 @@
+*{
+	margin:0;
+	padding:0;
+
+}
+
+#container{
+	width:604px;
+	height:453px;
+	position:relative;
+}
+
+
+#container ul{
+	width:604px;
+	height:453px;
+	list-style:none outside none;
+	position:relative;
+ 
+}
+
+#container li:first-child{
+	display:list-item;
+	position:absolute;
+}
+
+
+#container li{
+
+	position:absolute;
+	display:none;
+}
+
+#FBcomment{
+	margin-top: 10px;	
+	background-color: white;
+}
+
+#multiview{
+	width: auto;
+}
+
+#emailbox{
+	background-color: white;
+	margin-top: 10px;	
+	border-radius: 5px;
+	border: 1px solid rgb(218, 218, 218);
+	padding: 20px;
+	width: 508px;
+	height: auto;
+  }
+  table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  }
+  td, th {
+	border: 0px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+
+  #emailboxslideshow{
+	background-color: white;
+	margin-top: 10px;	
+	position:absolute;
+	display:none;
+	border-radius: 5px;
+	border: 1px solid rgb(218, 218, 218);
+	padding: 20px;
+	width: 508px;
+	height: auto;
+  }
+  table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  }
+  td, th {
+	border: 0px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+
+
+
+  #emailboxmultiview{
+	margin-top: 10px;	
+	border-radius: 5px;
+	border: 1px solid rgb(218, 218, 218);
+	padding: 20px;
+	width: auto;
+	height: auto;
+  }
+  table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  }
+  td, th {
+	border: 0px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+  }
+
