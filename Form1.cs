@@ -19,14 +19,15 @@ namespace SMauto
     {
 
         #region FL = File Locations
-        readonly string FL_origional    = @"Dependencies\\SlideshowOrigional.html";
-        readonly string FL_cssstyle     = @"Dependencies\\cssstyles.css";
-        readonly string FL_jquery       = @"Dependencies\\jquery-1.4.2.min.js";
-        readonly string FL_OBS_Twitter  = @"OBS_Twitter.html";
-        readonly string FL_twitterFB_savedata = @"Dependencies\\twitterFB_savedata.txt";
-        readonly string FL_Email_savedata = @"Dependencies\\Email_savedata.txt";
-        readonly string FL_multiview = @"Multiview.html";
+        readonly string FL_origional    = @"Dependencies\\SlideshowOrigional.html";         //Template for HTML slideshow
+        readonly string FL_cssstyle     = @"Dependencies\\cssstyles.css";                   //CSS for slideshow
+        readonly string FL_jquery       = @"Dependencies\\jquery-1.4.2.min.js";             //Javascript for slidshow
+        readonly string FL_OBS_Twitter  = @"OBS_Twitter.html";                              //Output HTML page
+        readonly string FL_twitterFB_savedata = @"Dependencies\\twitterFB_savedata.txt";    //Savedata for tweets and facebook comments    
+        readonly string FL_Email_savedata = @"Dependencies\\Email_savedata.txt";            //Savedata for emails 
+        readonly string FL_multiview = @"Multiview.html";                                   //Multiview output
         #endregion
+
         #region Loading things
         public F_SMauto()
         {
@@ -41,18 +42,21 @@ namespace SMauto
 
         private void B_File_Click(object sender, EventArgs e)
         {
+            //Check to see if the critical files exist
             bool file1, file2, file3;
-            file1 = System.IO.File.Exists(FL_origional);
+            file1 = System.IO.File.Exists(FL_origional);    
             file2 = System.IO.File.Exists(FL_cssstyle);
             file3 = System.IO.File.Exists(FL_jquery);
 
             if (file1 & file2 & file3) 
             {
+                //If all critical files exist, allow user to continue
                 B_FileCheck.BackColor = Color.Green;
                 GB_ActiveArea.Enabled = true;
             }
             else
             {
+                //Lock user out 
                 B_FileCheck.BackColor = Color.Red;
                 GB_ActiveArea.Enabled = false;
             }
@@ -60,7 +64,7 @@ namespace SMauto
         #endregion
 
         string EmailHTML;
-        readonly string EmailHTMLOrigional =
+        readonly string EmailHTMLOrigional =    //HTML string for inserting an email. This creates a box with a name, body and email icon
                     "<link rel=\"stylesheet\" type=\"text/css\" href=\"Dependencies/cssstyles.css\" />" +
                     "<p id=\"emailbox\"><table><tr><th style=\"font-size: 30px;\">" +
                     " NAME " +
@@ -70,8 +74,11 @@ namespace SMauto
                     //"<img src=\"Dependencies/pic.jfif\" width=\"458px\">",
                     "</th></tr></table></p>";
 
-        List<string> EmailSavedata = new List<string>(new string[10]);
+        //list for savedata. Each email uses 2 elements in the list, one for name and one for body
+        //Eg... Email1 name = EmailSaveData[0] and Email1 body = EmailSaveData[1]
+        List<string> EmailSavedata = new List<string>(new string[10]);  
 
+        //HTML for the multiview output. ITs just an HTML table
         readonly string MultiviewHTML =
             "<meta http-equiv=\"refresh\" content=\"10\">" + //refresh webpage every 10 seconds
             "<table>" +
@@ -102,12 +109,14 @@ namespace SMauto
         #region Clear and update buttons
         private void B_Clear_Click(object sender, EventArgs e)
         {
+            //Clear file by deleating it and copying the template across
             File.Delete(FL_OBS_Twitter);
             File.Copy(FL_origional, FL_OBS_Twitter);
         }
         private void B_Update_Click(object sender, EventArgs e)
         {
-            
+            //For displaying single social media snippets. 
+            //simple IF checks all radio buttons. only one radio button can be checked at once, as they are all in the same region. 
             if (RB_single.Checked)
             {
                 #region Singles
@@ -115,7 +124,8 @@ namespace SMauto
                 if (RB_tweet1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    File.WriteAllText(FL_OBS_Twitter, TB_tweet1.Text);
+                    //write raw tweet embed data directly to the HTML file
+                    File.WriteAllText(FL_OBS_Twitter, TB_tweet1.Text);  
                 }
                 if (RB_tweet2.Checked)
                 {
@@ -142,6 +152,7 @@ namespace SMauto
                 if (RB_FB1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
+                    //Write raw facebook comment embed data to HTML file. Change width to line up with tweet width. Change heigh to be auto, else you loose the bottom of the comment with the reduced width
                     File.WriteAllText(FL_OBS_Twitter, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
                 }
                 if (RB_FB2.Checked)
@@ -168,7 +179,8 @@ namespace SMauto
                 if (RB_Email1.Checked)
                 {
                     File.Delete(FL_OBS_Twitter);
-                    EmailHTML = EmailHTMLOrigional;
+                    EmailHTML = EmailHTMLOrigional; //Reset EmailHTML veriable with template
+                    //Insert email html into output html file. Replace name and body with the data
                     File.WriteAllText(FL_OBS_Twitter, EmailHTML.Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]));
                 }
                 if (RB_Email2.Checked)
@@ -199,19 +211,21 @@ namespace SMauto
 
                 #endregion
             }
+
+            //for when a slideshow is wanted
             if (RB_slideshow.Checked)
             {
                 File.Delete(FL_OBS_Twitter);
-                File.Copy(FL_origional, FL_OBS_Twitter);
-                #region Multis
+                File.Copy(FL_origional, FL_OBS_Twitter);    //reset html file every time
                 //reverse order so that first tweet shows first
                 //Tweets
                 if (CB_tweet5.Checked)
                 {
+                    //<li> </li> needs to encapsulate every social media snippet
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
                     alllines.Insert(15, "<li>");
-                    alllines.Insert(16, TB_tweet5.Text);
+                    alllines.Insert(16, TB_tweet5.Text);    //write tweet embed data
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -258,8 +272,8 @@ namespace SMauto
                 {
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li id=\"FBcomment\">");
-                    alllines.Insert(16, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));
+                    alllines.Insert(15, "<li id=\"FBcomment\">");   //change id in CSS. refer to css file to see whats changed
+                    alllines.Insert(16, TB_FB1.Text.Replace("width=\"560\"", "width=\"550\"").Replace("height=\"", "height=\"auto"));   //change height and width as before 
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -306,8 +320,8 @@ namespace SMauto
                     EmailHTML = EmailHTMLOrigional;
                     var alllines = File.ReadAllLines(FL_OBS_Twitter).ToList();
                     alllines.Insert(14, "");
-                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");
-                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"","").Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]));
+                    alllines.Insert(15, "<li id=\"emailboxslideshow\">");   //email slideshow CSS. Refer to css file
+                    alllines.Insert(16, EmailHTML.Replace("id=\"emailbox\"","").Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]));   //replace name and body with data
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
@@ -355,25 +369,27 @@ namespace SMauto
                     alllines.Insert(17, "</li>");
                     File.WriteAllLines(FL_OBS_Twitter, alllines.ToArray());
                 }
-                #endregion
             }
             #region Multiview output
 
             EmailHTML = EmailHTMLOrigional;
-            File.Delete(FL_multiview);
+            File.Delete(FL_multiview);  //reset multiview file
             File.WriteAllText(FL_multiview, MultiviewHTML
+                //different CSS is needed for multiview. Replace name and body as before
                 .Replace("EMAIL1", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[0]).Replace("BODY", EmailSavedata[1]))
                 .Replace("EMAIL2", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[2]).Replace("BODY", EmailSavedata[3]))
                 .Replace("EMAIL3", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[4]).Replace("BODY", EmailSavedata[5]))
                 .Replace("EMAIL4", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[6]).Replace("BODY", EmailSavedata[7]))
                 .Replace("EMAIL5", EmailHTML.Replace("id=\"emailbox\"", "id=\"emailboxmultiview\"").Replace("NAME", EmailSavedata[8]).Replace("BODY", EmailSavedata[9]))
 
+                //Copy tweets directly
                 .Replace("TWEET1", TB_tweet1.Text)
                 .Replace("TWEET2", TB_tweet2.Text)
                 .Replace("TWEET3", TB_tweet3.Text)
                 .Replace("TWEET4", TB_tweet4.Text)
                 .Replace("TWEET5", TB_tweet5.Text)
 
+                //remove width style. Multiview is a table, so the width is automaticaly controlled 
                 .Replace("FB1", TB_FB1.Text.Replace("width=\"560\"", ""))
                 .Replace("FB2", TB_FB2.Text.Replace("width=\"560\"", ""))
                 .Replace("FB3", TB_FB3.Text.Replace("width=\"560\"", ""))
@@ -433,8 +449,9 @@ namespace SMauto
         #region Memory buttons
         private void B_SaveAll_Click(object sender, EventArgs e)
         {
-            File.WriteAllText(FL_twitterFB_savedata, string.Empty);
-            var TwtFBSaveDataLines = File.ReadAllLines(FL_twitterFB_savedata).ToList();
+            File.WriteAllText(FL_twitterFB_savedata, string.Empty); //clear file
+            var TwtFBSaveDataLines = File.ReadAllLines(FL_twitterFB_savedata).ToList(); //read file to set type of 'TwtFBSaveDataLines'
+            //add all elements to the list
             TwtFBSaveDataLines.Add(TB_tweet1.Text);
             TwtFBSaveDataLines.Add(TB_tweet2.Text);
             TwtFBSaveDataLines.Add(TB_tweet3.Text);
@@ -445,9 +462,9 @@ namespace SMauto
             TwtFBSaveDataLines.Add(TB_FB3.Text);
             TwtFBSaveDataLines.Add(TB_FB4.Text);
             TwtFBSaveDataLines.Add(TB_FB5.Text);
-            File.WriteAllLines(FL_twitterFB_savedata, TwtFBSaveDataLines.ToArray());
+            File.WriteAllLines(FL_twitterFB_savedata, TwtFBSaveDataLines.ToArray());    //write to file
 
-
+            //check to see what email is being shown at that time
             if (ComB_Email.SelectedIndex == 0)
             {
                 EmailSavedata[0] = TB_EmailName.Text;
@@ -475,12 +492,13 @@ namespace SMauto
             }
 
             File.WriteAllText(FL_Email_savedata, string.Empty);
-            File.WriteAllLines(FL_Email_savedata, EmailSavedata.ToArray());
+            File.WriteAllLines(FL_Email_savedata, EmailSavedata.ToArray()); //save email data
 
         }
         private void B_LoadAll_Click(object sender, EventArgs e)
         {
-            var TwtFBSaveDataLines = File.ReadAllLines(FL_twitterFB_savedata).ToList();
+            var TwtFBSaveDataLines = File.ReadAllLines(FL_twitterFB_savedata).ToList(); //read file to set type of 'TwtFBSaveDataLines'
+            //write data to text boxes
             TB_tweet1.Text  = TwtFBSaveDataLines[0];
             TB_tweet2.Text  = TwtFBSaveDataLines[1];
             TB_tweet3.Text  = TwtFBSaveDataLines[2];
@@ -493,16 +511,17 @@ namespace SMauto
             TB_FB5.Text = TwtFBSaveDataLines[9];
 
             EmailSavedata = File.ReadAllLines(FL_Email_savedata).ToList();
-            ComB_Email.SelectedIndex = 0;
-            TB_EmailName.Text = EmailSavedata[0];
+            ComB_Email.SelectedIndex = 0;           //select first email
+            TB_EmailName.Text = EmailSavedata[0];   //write first email data to textboxes
             TB_EmailBody.Text = EmailSavedata[1];
         }
         private void B_ClearAll_Click(object sender, EventArgs e)
         {
+            //message box, just in case
             DialogResult dialogresult = MessageBox.Show("This will remove all saved tweets, FBs & emails", "Clear Memory", MessageBoxButtons.YesNo);
             if(dialogresult == DialogResult.Yes)
             {
-                #region Clear all text boxes
+                //clear text boxes
                 TB_tweet1.Clear();
                 TB_tweet2.Clear();
                 TB_tweet3.Clear();
@@ -513,22 +532,18 @@ namespace SMauto
                 TB_FB3.Clear();
                 TB_FB4.Clear();
                 TB_FB5.Clear();
-                #endregion
+
+                //clear save data files
                 File.WriteAllText(FL_twitterFB_savedata, string.Empty);
                 File.WriteAllText(FL_Email_savedata, string.Empty);
                 EmailSavedata.Clear();
             }
         }
-
-
-
-
-
-
         #endregion
 
         private void CB_Email_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //when the email selection index is changed, change what is shown in the textboxes
             if(ComB_Email.SelectedIndex == 0)
             {
                 TB_EmailName.Text = EmailSavedata[0];
@@ -558,6 +573,7 @@ namespace SMauto
 
         private void ComB_Email_Click(object sender, EventArgs e)
         {
+            //as soon as the email selection box is clicked(before index has been changed), save current email to save data
             if (ComB_Email.SelectedIndex == 0)
             {
                 EmailSavedata[0] = TB_EmailName.Text;
